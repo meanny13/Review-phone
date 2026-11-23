@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Inarich Store - สมุดรีวิวจากลูกค้า</title>
+  <!-- Google Fonts: Prompt (Thai Body) & Fredoka (Cute Display Titles) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <script>
+    // กำหนดค่าธีมสี ฟอนต์ และสไตล์ Scrapbook Gingham Pink & Cream ให้ตรงกับรูปตัวอย่าง
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Prompt', 'sans-serif'],
+            cute: ['Fredoka', 'Prompt', 'sans-serif'],
+          },
+          colors: {
+            cream: {
+              50: '#FFFDFB',
+              100: '#FDF8F5',
+              200: '#F8EFEA',
+              300: '#EEF6E8',
+            },
+            strawberry: {
+              100: '#FFE4EC',
+              200: '#FFC2D4',
+              300: '#FF9BB8',
+              400: '#FF709A',
+              500: '#F45D89',
+              600: '#D93D6B',
+            },
+            mocha: {
+              300: '#D6D3D1',
+              500: '#78716C',
+              700: '#44403C',
+              800: '#292524',
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* พื้นหลังตาราง Gingham ชมพูพาสเทลด้านนอกกรอบมือถือ */
+    body {
+      background-color: #FFF6F8;
+      background-image:
+        linear-gradient(90deg, rgba(255, 182, 203, 0.28) 50%, transparent 50%),
+        linear-gradient(rgba(255, 182, 203, 0.28) 50%, transparent 50%);
+      background-size: 32px 32px;
+      background-attachment: fixed;
+      color: #44403C;
+      font-family: 'Prompt', sans-serif;
+    }
+    /* โครงเครื่องสมาร์ตโฟนขนาด 390px x 780px */
+    .phone-chassis {
+      position: relative;
+      width: 390px;
+      min-width: 390px;
+      max-width: 390px;
+      height: 780px;
+      min-height: 780px;
+      max-height: 780px;
+      flex-shrink: 0;
+      transform: scale(1);
+      background: linear-gradient(145deg, #FFE4EC 0%, #FFFDFB 52%, #EEF6E8 100%);
+      border-radius: 52px;
+      padding: 12px;
+      box-shadow:
+        0 24px 55px 12px rgba(244, 93, 137, 0.18),
+        0 0 0 3px #FFFDFB,
+        0 0 0 6px #FFC2D4,
+        inset 0 2px 6px rgba(255, 255, 255, 0.92);
+    }
+    /* ปุ่มฮาร์ดแวร์ด้านข้างเครื่อง */
+    .phone-btn-left-1 {
+      position: absolute;
+      left: -9px;
+      top: 135px;
+      width: 5px;
+      height: 28px;
+      background: #FF9BB8;
+      border-radius: 4px 0 0 4px;
+    }
+    .phone-btn-left-2 {
+      position: absolute;
+      left: -9px;
+      top: 180px;
+      width: 5px;
+      height: 50px;
+      background: #FF9BB8;
+      border-radius: 4px 0 0 4px;
+    }
+    .phone-btn-left-3 {
+      position: absolute;
+      left: -9px;
+      top: 244px;
+      width: 5px;
+      height: 50px;
+      background: #FF9BB8;
+      border-radius: 4px 0 0 4px;
+    }
+    .phone-btn-right {
+      position: absolute;
+      right: -9px;
+      top: 195px;
+      width: 5px;
+      height: 72px;
+      background: #B8D4A6;
+      border-radius: 0 4px 4px 0;
+    }
+    /* พื้นผิวหน้าจอด้านในสไตล์กระดาษสมุดภาพจุดไข่ปลาพาสเทล */
+    .phone-screen {
+      background-color: #FFFDFB;
+      background-image:
+        radial-gradient(rgba(244, 93, 137, 0.12) 1.6px, transparent 1.8px),
+        radial-gradient(rgba(132, 169, 108, 0.1) 1.6px, transparent 1.8px),
+        linear-gradient(180deg, #FFFDFB 0%, #FFF5F7 55%, #FDF8F5 100%);
+      background-size: 22px 22px, 22px 22px, 100% 100%;
+      background-position: 0 0, 11px 11px, 0 0;
+    }
+    /* เทปตกแต่งสไตล์ Scrapbook Gingham */
+    .gingham-tape-pink {
+      background-color: #FFE4EC;
+      background-image:
+        linear-gradient(90deg, rgba(244, 93, 137, 0.25) 50%, transparent 50%),
+        linear-gradient(rgba(244, 93, 137, 0.25) 50%, transparent 50%);
+      background-size: 12px 12px;
+    }
+    .gingham-tape-sage {
+      background-color: #EEF6E8;
+      background-image:
+        linear-gradient(90deg, rgba(132, 169, 108, 0.28) 50%, transparent 50%),
+        linear-gradient(rgba(132, 169, 108, 0.28) 50%, transparent 50%);
+      background-size: 12px 12px;
+    }
+    /* พื้นหลังลายจุดไข่ปลาในการ์ดรีวิว */
+    .polka-bg {
+      background-image: radial-gradient(rgba(244, 93, 137, 0.14) 1.5px, transparent 1.5px);
+      background-size: 14px 14px;
+    }
+    /* การ์ดรีวิวสไตล์โพลารอยด์สมุดภาพ */
+    .polaroid-card {
+      box-shadow: 0 8px 20px rgba(244, 93, 137, 0.09);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .polaroid-card:hover {
+      transform: rotate(0deg) translateY(-2px) !important;
+      box-shadow: 0 12px 24px rgba(244, 93, 137, 0.15);
+    }
+    /* เอฟเฟกต์ดาวระยิบระยับและหัวใจ/สัญลักษณ์ร่วงช้าๆ ด้านหลัง */
+    .phone-bg-effects {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .bg-twinkle-star {
+      position: absolute;
+      animation: twinkleStar 2.6s ease-in-out infinite;
+      opacity: 0.25;
+    }
+    .bg-falling-item {
+      position: absolute;
+      top: -16px;
+      animation: fallSlowly linear infinite;
+      opacity: 0.5;
+    }
+    @keyframes twinkleStar {
+      0%, 100% {
+        transform: scale(0.75) rotate(0deg);
+        opacity: 0.2;
+      }
+      50% {
+        transform: scale(1.25) rotate(18deg);
+        opacity: 0.72;
+      }
+    }
+    @keyframes fallSlowly {
+      0% {
+        transform: translateY(-10px) translateX(0px) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: 0.55;
+      }
+      50% {
+        transform: translateY(380px) translateX(8px) rotate(160deg);
+      }
+      88% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(780px) translateX(-6px) rotate(320deg);
+        opacity: 0;
+      }
+    }
+    /* แถบเลื่อนภายในหน้าจอ */
+    .phone-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .phone-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .phone-scroll::-webkit-scrollbar-thumb {
+      background: #FFC2D4;
+      border-radius: 9999px;
+    }
+    .phone-scroll::-webkit-scrollbar-thumb:hover {
+      background: #F45D89;
+    }
+    /* เส้นแบ่งขอบลูกไม้พาสเทล */
+    .lace-divider {
+      height: 12px;
+      width: 100%;
+      background-image: radial-gradient(
+        circle at 10px 0,
+        transparent 9px,
+        #FFE4EC 10px,
+        #EEF6E8 12px,
+        transparent 13px
+      );
+      background-size: 20px 12px;
+      background-repeat: repeat-x;
+    }
+    /* การ์ดหลักโทน Coquette Scrapbook */
+    .coquette-card {
+      background: rgba(255, 253, 251, 0.97);
+      border: 2px solid #FFC2D4;
+      box-shadow: 0 6px 18px 4px rgba(244, 93, 137, 0.08), 0 3px 0 #FFE4EC;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+    }
+    .coquette-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px 4px rgba(244, 93, 137, 0.14), 0 4px 0 #FF9BB8;
+    }
+    /* ขอบวงแหวนโลโก้ร้าน */
+    .logo-scallop-ring {
+      box-shadow:
+        0 0 0 4px #FFFDFB,
+        0 0 0 7px #FFC2D4,
+        0 8px 16px rgba(244, 93, 137, 0.16);
+    }
+    .btn-bounce {
+      transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-bounce:active {
+      transform: scale(0.96);
+    }
+    /* ปุ่มชมพูพาสเทลสไตล์น่ารัก */
+    .btn-kawaii-pink {
+      background: linear-gradient(180deg, #FF9BB8 0%, #FF78A0 100%);
+      border: 1.5px solid #FFC2D4;
+      box-shadow: 0 2px 0 #F282A4, 0 4px 10px rgba(255, 120, 160, 0.16);
+      color: #FFFFFF;
+      transition: all 0.18s ease;
+    }
+    .btn-kawaii-pink:hover {
+      background: linear-gradient(180deg, #FFA8C2 0%, #FF84A9 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 0 #F282A4, 0 6px 12px rgba(255, 120, 160, 0.2);
+    }
+    .btn-kawaii-pink:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 1px 0 #F282A4, 0 2px 6px rgba(255, 120, 160, 0.14);
+    }
+    /* ปุ่มวงกลมมุมขวาบน */
+    .btn-kawaii-circle {
+      background: #FFFDFB;
+      border: 1.5px solid #FFC2D4;
+      box-shadow: 0 2px 0 #FFE4EC, 0 3px 8px rgba(244, 93, 137, 0.08);
+      transition: all 0.18s ease;
+    }
+    .btn-kawaii-circle:hover {
+      background: #FFF7F9;
+      transform: translateY(-1px);
+      border-color: #FF9BB8;
+    }
+    .btn-kawaii-circle:active {
+      transform: translateY(1px) scale(0.96);
+      box-shadow: 0 1px 0 #FFE4EC;
+    }
+    /* ปุ่มเพลงสีชมพูสดใสเมื่อเปิดใช้งาน */
+    .btn-music-active-pink {
+      background: linear-gradient(180deg, #FF9BB8 0%, #FF709A 100%);
+      border: 1.5px solid #FF709A;
+      box-shadow: 0 2px 0 #E0527D, 0 4px 10px rgba(244, 93, 137, 0.25);
+      color: #FFFFFF;
+      transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+    }
+    .btn-music-active-pink:hover {
+      background: linear-gradient(180deg, #FFA8C2 0%, #FF7FA6 100%);
+      transform: translateY(-1px);
+    }
+    .btn-music-active-pink:active {
+      transform: translateY(1px) scale(0.96);
+      box-shadow: 0 1px 0 #E0527D;
+    }
+    .banner-aspect {
+      aspect-ratio: 1920 / 800;
+      width: 100%;
+    }
+    /* Splash Loading Screen */
+    .splash-screen-bg {
+      background: linear-gradient(155deg, #FFE4EC 0%, #FFFDFB 52%, #EEF6E8 100%);
+    }
+    .splash-glow-ring {
+      box-shadow:
+        0 0 0 4px #FFFFFF,
+        0 0 0 8px rgba(255, 194, 212, 0.8),
+        0 14px 30px rgba(244, 93, 137, 0.24);
+    }
+    .splash-progress-fill {
+      background: linear-gradient(90deg, #FF9BB8 0%, #F45D89 55%, #D93D6B 100%);
+      box-shadow: 0 0 10px rgba(244, 93, 137, 0.5);
+    }
+    @keyframes floatSlow {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+    .animate-float-slow {
+      animation: floatSlow 2.4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-2 sm:p-4 selection:bg-strawberry-200 selection:text-mocha-800">
+  <!-- โครงเครื่องสมาร์ตโฟน -->
+  <div class="phone-chassis flex flex-col">
+    <div class="phone-btn-left-1" aria-hidden="true"></div>
+    <div class="phone-btn-left-2" aria-hidden="true"></div>
+    <div class="phone-btn-left-3" aria-hidden="true"></div>
+    <div class="phone-btn-right" aria-hidden="true"></div>
+    <!-- หน้าจอด้านในเครื่อง -->
+    <div class="phone-screen w-full flex-1 rounded-[40px] border-2 border-strawberry-200 overflow-hidden flex flex-col relative shadow-inner">
+      <!-- แถบเทปลายตารางเขียวพาสเทลด้านบนสุด -->
+      <div class="h-2.5 w-full gingham-tape-sage border-b border-dashed border-strawberry-200 shrink-0 z-30"></div>
+      <!-- เลเยอร์ดาวระยิบระยับและสัญลักษณ์ร่วงช้าๆ -->
+      <div id="phone-bg-effects" class="phone-bg-effects" aria-hidden="true"></div>
+      <!-- หน้าจอโหลดเริ่มต้น (0% - 100%) -->
+      <div
+        id="store-loading-screen"
+        class="splash-screen-bg absolute inset-0 z-40 flex flex-col items-center justify-center px-7 text-center transition-opacity duration-500"
+      >
+        <div class="absolute top-14 left-8 text-strawberry-400/80 text-sm animate-pulse">🍎</div>
+        <div class="absolute top-24 right-9 text-emerald-500/80 text-xs animate-bounce">🍀</div>
+        <div class="absolute bottom-24 left-10 text-strawberry-500/70 text-xs animate-bounce">🍒</div>
+        <div class="absolute bottom-20 right-9 text-strawberry-400/80 text-sm animate-pulse">🎀</div>
+        <div class="w-24 h-24 rounded-full overflow-hidden bg-white splash-glow-ring mb-4 animate-float-slow flex items-center justify-center">
+          <img id="splash-store-logo" src="" alt="โลโก้ร้าน" class="w-full h-full object-cover" />
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/90 border border-strawberry-200 text-[10px] font-bold text-strawberry-600 mb-1.5 shadow-2xs">
+          <span>୨୧</span>
+          <span>CUSTOMER GUESTBOOK</span>
+          <span>୨୧</span>
+        </div>
+        <h2 id="splash-store-name" class="font-cute font-bold text-2xl text-mocha-800 tracking-wide mb-1">
+          Inarich Store
+        </h2>
+        <p class="text-[11px] text-mocha-500 mb-6">กำลังเปิดสมุดรีวิวความประทับใจให้คุณหนูสักครู่นะคะ...</p>
+        <div class="w-full max-w-[250px] space-y-1.5">
+          <div class="flex items-center justify-between text-[11px] font-bold px-1">
+            <span class="text-mocha-700 flex items-center gap-1">
+              <i class="fa-solid fa-heart text-strawberry-500 animate-pulse"></i>
+              <span>กำลังโหลดสมุดรีวิว</span>
+            </span>
+            <span id="splash-percent-text" class="font-cute text-strawberry-600">0%</span>
+          </div>
+          <div class="w-full h-3.5 rounded-full bg-white/90 border-2 border-strawberry-200 p-0.5 shadow-inner overflow-hidden">
+            <div id="splash-progress-bar" class="splash-progress-fill h-full rounded-full transition-all duration-75" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- แถบสถานะและ Dynamic Island -->
+      <div class="grid grid-cols-[1fr_auto_1fr] items-center px-6 pt-2 pb-1.5 bg-cream-50/95 text-[11px] font-semibold text-mocha-700 select-none shrink-0 z-30">
+        <span id="phone-clock" class="justify-self-start">22:16</span>
+        <div class="w-28 h-6 bg-mocha-800 rounded-full flex items-center justify-between px-3 shadow-inner justify-self-center">
+          <span class="w-2 h-2 rounded-full bg-strawberry-400 animate-pulse"></span>
+          <span class="text-[9px] text-cream-50 font-cute tracking-wider">Inarich</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-mocha-700 border border-mocha-500"></span>
+        </div>
+        <div class="flex items-center gap-1.5 text-mocha-700 justify-self-end">
+          <i class="fa-solid fa-signal text-[10px]"></i>
+          <i class="fa-solid fa-wifi text-[10px]"></i>
+          <i class="fa-solid fa-battery-full text-xs text-strawberry-500"></i>
+        </div>
+      </div>
+      <!-- ส่วนหัวด้านบน: ชื่อร้าน + ปุ่มเพลง + ปุ่มจัดการรีวิว -->
+      <header class="sticky top-0 z-20 bg-cream-50/95 backdrop-blur-md border-b border-dashed border-strawberry-200 px-3 py-2 shrink-0">
+        <div class="flex items-center justify-between gap-1.5">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span
+              id="header-store-icon-box"
+              class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-strawberry-100 text-strawberry-500 border border-strawberry-200 text-xs shrink-0 overflow-hidden relative"
+            >
+              <img id="display-header-icon" src="" alt="ไอคอนร้าน" class="hidden w-full h-full object-cover" />
+              <i id="display-header-ribbon-icon" class="fa-solid fa-ribbon"></i>
+            </span>
+            <div class="truncate pl-0.5">
+              <span id="nav-store-name" class="font-cute font-bold text-sm text-strawberry-600 tracking-wide block leading-none truncate">
+                Inarich Store
+              </span>
+              <span id="nav-subtitle" class="text-[9px] text-mocha-500 font-medium block mt-0.5">
+                ｡ﾟ•┈୨♡୧┈•ﾟ｡ สมุดรีวิวจากลูกค้า
+              </span>
+            </div>
+          </div>
+          <nav class="flex items-center gap-1 shrink-0" aria-label="ปุ่มควบคุมหน้าสมุดรีวิว">
+            <button
+              id="btn-music-toggle"
+              type="button"
+              onclick="toggleBgmMusic()"
+              title="เปิด/ปิดเพลงพื้นหลัง"
+              aria-pressed="false"
+              class="btn-music-active-pink w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium text-white shrink-0"
+            >
+              <i id="music-icon" class="fa-solid fa-music text-[10px] text-white"></i>
+            </button>
+            <button
+              id="tab-mode-admin"
+              type="button"
+              onclick="toggleAdminMode()"
+              class="btn-kawaii-circle w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium text-mocha-700"
+              title="จัดการสมุดรีวิว"
+            >
+              <i class="fa-solid fa-gear text-[10px] text-strawberry-500"></i>
+            </button>
+          </nav>
+        </div>
+      </header>
+      <!-- พื้นที่เลื่อนหลักของเว็บรีวิว (ไม่มีแถบเมนูด้านล่าง) -->
+      <main id="phone-scroll-area" class="relative z-10 flex-1 overflow-y-auto phone-scroll px-3 pt-3 pb-5 space-y-4">
+        <!-- โหมดหน้ารีวิวสำหรับลูกค้า -->
+        <section id="view-customer-group" class="space-y-3.5">
+          <!-- การ์ดโปรไฟล์ร้านสไตล์ Scrapbook Polaroid Camera -->
+          <div class="coquette-card rounded-3xl overflow-visible relative bg-cream-50 p-2.5 pt-3.5">
+            <div class="relative">
+              <div
+                class="w-16 h-3.5 gingham-tape-sage rounded-xs border border-strawberry-200/80 shadow-2xs absolute -top-2 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+              ></div>
+              <div class="relative w-full banner-aspect rounded-2xl bg-strawberry-100 overflow-hidden group border border-strawberry-200">
+                <img
+                  id="display-banner"
+                  src=""
+                  alt="แบนเนอร์ร้าน Inarich Store"
+                  class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                />
+                <div class="absolute top-2 left-2 flex items-center gap-1">
+                  <span id="display-banner-badge" class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-white/90 text-strawberry-600 border border-strawberry-200 shadow-2xs">
+                    🍀 OFFICIAL
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-1.5 px-1 text-[9px] text-mocha-500 font-mono">
+              <span id="display-cam-left">INARICH-CAM • SNAPSHOT</span>
+              <span id="display-cam-right">🍎 🍀 🍒</span>
+            </div>
+            <div class="lace-divider mt-1 relative z-10"></div>
+            <div class="px-2 pb-2 pt-1 text-center relative z-20">
+              <div class="relative inline-block -mt-11 mb-1.5 z-20">
+                <div class="w-20 h-20 rounded-full overflow-hidden bg-white logo-scallop-ring mx-auto relative">
+                  <img id="display-logo" src="" alt="โลโก้ร้าน Inarich Store" class="w-full h-full object-cover" />
+                </div>
+                <span
+                  id="display-logo-sticker"
+                  aria-hidden="true"
+                  class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white text-strawberry-500 border border-strawberry-200 shadow flex items-center justify-center text-[11px] select-none pointer-events-none"
+                >
+                  🍓
+                </span>
+              </div>
+              <div class="flex items-center justify-center mb-0.5">
+                <h1 id="display-store-name" class="font-cute font-bold text-lg text-strawberry-600 tracking-wide text-center">
+                  Inarich Store
+                </h1>
+              </div>
+              <div id="display-emoji-divider" class="text-[10px] tracking-widest text-strawberry-400 select-none my-0.5">
+                🍎 ˖ ࣪ ⊹ 🍀 ˚ ༘ ೀ⋆｡˚ 🍒 ˖ ࣪ ⊹ 🍀
+              </div>
+              <p id="display-welcome-msg" class="text-xs text-mocha-500 leading-relaxed max-w-xs mx-auto">
+                ยินดีต้อนรับสู่สมุดรีวิวความประทับใจของ Inarich Store 💖 อ่านรีวิวจากคุณลูกค้าจริงหรือฝากรีวิวน่ารักๆ ได้เลยค่ะ
+              </p>
+            </div>
+          </div>
+          <!-- แบนเนอร์หน้ารีวิว (ถ้ามีการตั้งค่าไว้) -->
+          <div
+            id="reviews-banner-wrapper"
+            class="hidden coquette-card rounded-2xl overflow-hidden bg-strawberry-100 border border-strawberry-200 relative"
+          >
+            <div class="w-full banner-aspect bg-strawberry-100 overflow-hidden">
+              <img id="display-reviews-banner" src="" alt="แบนเนอร์หน้ารีวิว" class="w-full h-full object-cover object-center" />
+            </div>
+          </div>
+          <!-- การ์ดหัวข้อสมุดรีวิว (CUSTOMER GUESTBOOK) + ปุ่มเขียนรีวิว -->
+          <div class="bg-gradient-to-br from-white via-strawberry-100/50 to-cream-100 rounded-3xl p-3.5 shadow-2xs border-2 border-strawberry-200 relative overflow-hidden polka-bg">
+            <div class="h-2.5 w-full gingham-tape-pink absolute top-0 left-0"></div>
+            <div class="flex items-center justify-between gap-2 mt-1">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-12 h-12 rounded-2xl bg-white border-2 border-amber-200 shadow-2xs flex flex-col items-center justify-center text-amber-500 shrink-0 -rotate-2">
+                  <span class="text-base font-cute font-extrabold leading-none" id="avg-rating-score">5.0</span>
+                  <span class="text-[8px] tracking-tighter mt-0.5">★★★★★</span>
+                </div>
+                <div class="min-w-0">
+                  <div class="inline-flex items-center gap-1 text-[8.5px] font-bold text-strawberry-500 bg-white/90 px-2 py-0.5 rounded-full border border-strawberry-200 mb-0.5">
+                    <span>📖</span>
+                    <span>CUSTOMER GUESTBOOK</span>
+                  </div>
+                  <h2 class="font-bold text-xs text-mocha-800 flex items-center gap-1 truncate">
+                    <span>รีวิวจากลูกค้า</span>
+                    <span>🍀</span>
+                  </h2>
+                  <p class="text-[10px] text-mocha-500 truncate">
+                    ทั้งหมด <span id="reviews-total-count" class="font-bold text-strawberry-600">2</span> คน
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onclick="openWriteReviewModal()"
+                id="toggle-rev-form-btn"
+                class="btn-kawaii-pink px-3 py-2 rounded-2xl text-[11px] font-semibold flex items-center gap-1 shrink-0"
+              >
+                <i class="fa-solid fa-pen text-[10px]"></i>
+                <span>เขียนรีวิว</span>
+              </button>
+            </div>
+          </div>
+          <!-- ตัวคั่นลายเทปเขียวพาสเทล: รีวิวที่แปะไว้ในสมุด -->
+          <div class="flex items-center gap-2">
+            <div class="h-2.5 flex-grow gingham-tape-sage rounded-full"></div>
+            <span class="text-[11px] font-bold text-strawberry-500 shrink-0 px-1">🍒 รีวิวที่แปะไว้ในสมุด 🍒</span>
+            <div class="h-2.5 flex-grow gingham-tape-sage rounded-full"></div>
+          </div>
+          <!-- รายการการ์ดรีวิวสไตล์โพลารอยด์ -->
+          <div id="reviews-list-container" class="space-y-3 pt-1">
+            <!-- แสดงผลด้วย JavaScript -->
+          </div>
+        </section>
+        <!-- โหมดจัดการสมุดรีวิว -->
+        <section id="view-admin-group" class="hidden space-y-3">
+          <div class="rounded-2xl p-2.5 bg-amber-50 border border-amber-200 text-amber-900 shadow-2xs flex items-start gap-2">
+            <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-xs shrink-0 mt-0.5">
+              <i class="fa-solid fa-sliders"></i>
+            </span>
+            <div class="min-w-0 flex-1">
+              <h2 class="font-bold text-xs text-amber-900">จัดการสมุดรีวิว (Review Manager)</h2>
+              <p class="text-[10px] text-amber-800/90 leading-tight">
+                ปรับแต่งหัวข้อร้าน ตอบกลับรีวิว หรือลบรีวิวได้ทันที ข้อมูลจะถูกบันทึกในเครื่องนี้ค่ะ
+              </p>
+            </div>
+          </div>
+
+          <!-- กรอบตั้งค่าหัวข้อสมุดรีวิว: แสดงส่วนเปลี่ยนรูปภาพก่อน (บันทึกอัตโนมัติ) ตามด้วยปุ่มแก้ไขข้อมูลร้าน -->
+          <div class="coquette-card rounded-2xl p-3.5 space-y-2.5">
+            <h3 class="font-bold text-xs text-mocha-800 border-b border-strawberry-100 pb-1.5 flex items-center gap-1.5">
+              <i class="fa-solid fa-store text-strawberry-500"></i>
+              <span>ตั้งค่าหัวข้อสมุดรีวิว & หน้าโปรไฟล์</span>
+            </h3>
+
+            <!-- อัปโหลดรูปแบนเนอร์และโลโก้จากโทรศัพท์ (บันทึกอัตโนมัติเมื่อเลือกไฟล์) -->
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="p-2 rounded-xl bg-cream-100/80 border border-strawberry-200 space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold text-mocha-700">รูปแบนเนอร์</span>
+                  <button
+                    type="button"
+                    onclick="resetStoreImage('banner')"
+                    class="text-[9px] text-strawberry-500 hover:underline"
+                  >
+                    รีเซ็ต
+                  </button>
+                </div>
+                <div class="w-full h-12 rounded-lg overflow-hidden bg-strawberry-100 border border-strawberry-200">
+                  <img id="admin-preview-banner" src="" alt="ตัวอย่างแบนเนอร์" class="w-full h-full object-cover" />
+                </div>
+                <label class="btn-bounce w-full py-1 px-2 rounded-lg bg-white border border-strawberry-300 text-strawberry-600 text-[10px] font-bold flex items-center justify-center gap-1 cursor-pointer">
+                  <i class="fa-solid fa-image"></i>
+                  <span>เลือกรูปแบนเนอร์</span>
+                  <input
+                    type="file"
+                    id="admin-banner-file"
+                    accept="image/*"
+                    onchange="handleAdminImageUpload(event, 'banner')"
+                    class="hidden"
+                  />
+                </label>
+              </div>
+              <div class="p-2 rounded-xl bg-cream-100/80 border border-strawberry-200 space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold text-mocha-700">รูปโลโก้ร้าน</span>
+                  <button
+                    type="button"
+                    onclick="resetStoreImage('logo')"
+                    class="text-[9px] text-strawberry-500 hover:underline"
+                  >
+                    รีเซ็ต
+                  </button>
+                </div>
+                <div class="w-12 h-12 mx-auto rounded-full overflow-hidden bg-white border border-strawberry-200">
+                  <img id="admin-preview-logo" src="" alt="ตัวอย่างโลโก้" class="w-full h-full object-cover" />
+                </div>
+                <label class="btn-bounce w-full py-1 px-2 rounded-lg bg-white border border-strawberry-300 text-strawberry-600 text-[10px] font-bold flex items-center justify-center gap-1 cursor-pointer">
+                  <i class="fa-solid fa-camera"></i>
+                  <span>เลือกรูปโลโก้</span>
+                  <input
+                    type="file"
+                    id="admin-logo-file"
+                    accept="image/*"
+                    onchange="handleAdminImageUpload(event, 'logo')"
+                    class="hidden"
+                  />
+                </label>
+              </div>
+            </div>
+
+            <!-- รูปไอคอนหัวเว็บด้านบน -->
+            <div class="p-2 rounded-xl bg-cream-100/80 border border-strawberry-200 flex items-center justify-between gap-2 text-xs">
+              <div class="flex items-center gap-2 min-w-0">
+                <div class="w-8 h-8 rounded-full bg-strawberry-100 border border-strawberry-200 flex items-center justify-center overflow-hidden shrink-0">
+                  <img id="admin-preview-header-icon" src="" alt="ไอคอนหัวเว็บ" class="hidden w-full h-full object-cover" />
+                  <i id="admin-preview-header-ribbon" class="fa-solid fa-ribbon text-xs text-strawberry-500"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-[10px] font-bold text-mocha-700 truncate">ไอคอนมุมซ้ายบน</div>
+                  <div class="text-[9px] text-mocha-500 truncate">อัปโหลดรูปแทนโบว์ได้ค่ะ</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-1 shrink-0">
+                <label class="btn-bounce px-2.5 py-1 rounded-lg bg-white border border-strawberry-300 text-strawberry-600 text-[10px] font-bold cursor-pointer">
+                  อัปโหลด
+                  <input
+                    type="file"
+                    id="admin-header-icon-file"
+                    accept="image/*"
+                    onchange="handleAdminImageUpload(event, 'headerIcon')"
+                    class="hidden"
+                  />
+                </label>
+                <button
+                  type="button"
+                  onclick="resetStoreImage('headerIcon')"
+                  class="px-2 py-1 rounded-lg bg-cream-200 text-mocha-700 text-[10px]"
+                >
+                  ค่าเดิม
+                </button>
+              </div>
+            </div>
+
+            <!-- ปุ่มเปิดป๊อบอัพแก้ไขข้อมูลร้าน (ชื่อร้าน, ข้อความ และอิโมติคอนทุกจุด) -->
+            <button
+              type="button"
+              onclick="openStoreSettingsModal()"
+              class="btn-kawaii-pink w-full py-2 px-3 rounded-xl font-semibold text-xs flex items-center justify-center gap-1.5"
+            >
+              <i class="fa-solid fa-pen-to-square"></i>
+              <span>แก้ไขข้อมูลร้าน</span>
+            </button>
+          </div>
+
+          <!-- กรอบแยกสำหรับตั้งค่าบังคับแนบรูปภาพหลักฐานตอนรีวิว (อยู่ข้างบนการตอบกลับ) -->
+          <div class="coquette-card rounded-2xl p-3.5">
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <div class="min-w-0">
+                <div class="font-bold text-mocha-800 flex items-center gap-1.5">
+                  <i class="fa-solid fa-camera text-strawberry-500"></i>
+                  <span>บังคับแนบรูปภาพหลักฐานตอนรีวิว</span>
+                </div>
+                <p id="admin-review-require-photo-desc" class="text-[10px] text-mocha-500 mt-0.5">
+                  ปัจจุบัน: ลูกค้าสามารถส่งรีวิวได้ทั้งแนบรูปและไม่แนบรูป
+                </p>
+              </div>
+              <button
+                type="button"
+                id="admin-review-require-photo-btn"
+                onclick="toggleRequireReviewPhoto()"
+                class="btn-bounce px-3 py-1.5 rounded-full text-[10px] font-bold shrink-0 border transition-all"
+              >
+                ไม่บังคับ
+              </button>
+            </div>
+          </div>
+
+          <!-- กรอบจัดการรีวิว & ตอบกลับ -->
+          <div class="coquette-card rounded-2xl p-3.5 space-y-2.5">
+            <h3 class="font-bold text-xs text-mocha-800 border-b border-strawberry-100 pb-1.5 flex items-center gap-1.5">
+              <i class="fa-solid fa-star text-strawberry-500"></i>
+              <span>จัดการรีวิว & ตอบกลับ</span>
+            </h3>
+            <div id="admin-reviews-list" class="space-y-2">
+              <!-- แสดงผลด้วย JavaScript -->
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- แถบเทปด้านล่างและ Home Indicator (ไม่มีแถบเมนูด้านล่าง) -->
+      <div class="h-2 w-full gingham-tape-sage border-t border-dashed border-strawberry-200 shrink-0"></div>
+      <div class="flex items-center justify-center py-1 bg-cream-50 shrink-0 select-none">
+        <div class="w-28 h-1 rounded-full bg-mocha-700/20"></div>
+      </div>
+      <!-- กล่องข้อความแจ้งเตือน Toast -->
+      <div
+        id="toast-container"
+        class="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none flex flex-col items-center gap-1.5 w-[85%]"
+      ></div>
+    </div>
+  </div>
+  <!-- โมดอลเขียนรีวิวสำหรับลูกค้า (ป๊อบอัพ) -->
+  <div id="write-review-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 bg-mocha-800/40 backdrop-blur-xs">
+    <div class="bg-cream-50 border-2 border-strawberry-300 rounded-3xl max-w-[350px] w-full p-4 shadow-2xl space-y-3 relative overflow-hidden polka-bg">
+      <div class="h-2 w-full gingham-tape-pink absolute top-0 left-0"></div>
+      <div class="flex items-center justify-between border-b border-dashed border-strawberry-200 pb-2 pt-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-7 h-7 rounded-full bg-strawberry-100 text-strawberry-500 border border-strawberry-200 flex items-center justify-center text-xs">
+            <i class="fa-solid fa-pen-nib"></i>
+          </span>
+          <div>
+            <h4 class="font-bold text-sm text-mocha-800 leading-none">เขียนรีวิวความประทับใจ</h4>
+            <span class="text-[9.5px] text-strawberry-500 font-medium">ฝากข้อความน่ารักๆ ลงสมุดรีวิว 💖</span>
+          </div>
+        </div>
+        <button
+          type="button"
+          onclick="closeModal('write-review-modal')"
+          class="w-7 h-7 rounded-full bg-white border border-strawberry-200 text-mocha-700 hover:bg-strawberry-100 flex items-center justify-center text-xs transition"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form onsubmit="submitReviewForm(event)" class="space-y-2.5">
+        <div>
+          <label class="block text-[10px] font-semibold mb-0.5 text-mocha-700">ชื่อลูกค้า / แอค *</label>
+          <input
+            type="text"
+            id="rev-author"
+            placeholder="เช่น คุณมิ้นท์ (Line)"
+            required
+            class="w-full px-3 py-2 rounded-xl bg-white border border-strawberry-200 text-xs font-medium text-mocha-800 focus:outline-none focus:ring-2 focus:ring-strawberry-400"
+          />
+        </div>
+        <div class="flex items-center justify-between bg-white px-3 py-1.5 rounded-xl border border-strawberry-200">
+          <span class="text-[11px] font-medium text-mocha-700">คะแนนความน่ารัก:</span>
+          <div class="flex gap-1" id="star-selector">
+            <button type="button" onclick="setReviewRating(1)" class="star-btn p-1 rounded-lg bg-amber-100 text-amber-500 transition">
+              <i class="fa-solid fa-star text-xs"></i>
+            </button>
+            <button type="button" onclick="setReviewRating(2)" class="star-btn p-1 rounded-lg bg-amber-100 text-amber-500 transition">
+              <i class="fa-solid fa-star text-xs"></i>
+            </button>
+            <button type="button" onclick="setReviewRating(3)" class="star-btn p-1 rounded-lg bg-amber-100 text-amber-500 transition">
+              <i class="fa-solid fa-star text-xs"></i>
+            </button>
+            <button type="button" onclick="setReviewRating(4)" class="star-btn p-1 rounded-lg bg-amber-100 text-amber-500 transition">
+              <i class="fa-solid fa-star text-xs"></i>
+            </button>
+            <button type="button" onclick="setReviewRating(5)" class="star-btn p-1 rounded-lg bg-amber-100 text-amber-500 transition">
+              <i class="fa-solid fa-star text-xs"></i>
+            </button>
+          </div>
+        </div>
+        <div>
+          <textarea
+            id="rev-comment"
+            rows="3"
+            placeholder="เขียนความประทับใจฝากไว้ในสมุดรีวิวได้เลยค่ะ..."
+            required
+            class="w-full px-3 py-2 rounded-xl bg-white border border-strawberry-200 text-xs focus:outline-none focus:ring-2 focus:ring-strawberry-400"
+          ></textarea>
+        </div>
+        <div class="bg-white/90 p-2.5 rounded-xl border border-dashed border-strawberry-200">
+          <label id="review-image-label" class="block text-[10px] font-medium text-mocha-700 mb-1">
+            แนบรูปถ่ายผลงาน / หลักฐาน (ถ้ามี)
+          </label>
+          <input
+            type="file"
+            id="review-image-file"
+            accept="image/*"
+            onchange="handleReviewImageUpload(event)"
+            class="w-full text-[11px]"
+          />
+          <input type="hidden" id="review-image-data" />
+        </div>
+        <div class="flex gap-1.5 pt-1">
+          <button
+            type="submit"
+            class="btn-kawaii-pink flex-1 py-2 px-3 rounded-xl font-semibold text-xs flex items-center justify-center gap-1"
+          >
+            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+            <span>แปะรีวิวลงบอร์ด</span>
+          </button>
+          <button
+            type="button"
+            onclick="closeModal('write-review-modal')"
+            class="px-3.5 py-2 rounded-xl bg-cream-200 text-mocha-700 text-xs font-medium hover:bg-strawberry-100 transition"
+          >
+            ปิด
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- โมดอลแก้ไขข้อมูลร้าน (ป๊อบอัพแก้ไขชื่อร้าน ข้อความ และอิโมติคอนทุกจุด) -->
+  <div id="admin-store-settings-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 bg-mocha-800/40 backdrop-blur-xs">
+    <div class="bg-cream-50 border-2 border-strawberry-300 rounded-3xl max-w-[355px] w-full max-h-[85vh] flex flex-col shadow-2xl relative overflow-hidden polka-bg">
+      <div class="h-2 w-full gingham-tape-pink shrink-0"></div>
+      <div class="flex items-center justify-between border-b border-dashed border-strawberry-200 px-4 py-2.5 shrink-0 bg-cream-50/95">
+        <h4 class="font-bold text-xs text-mocha-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-pen-to-square text-strawberry-500"></i>
+          <span>แก้ไขข้อมูลร้าน & อิโมติคอน</span>
+        </h4>
+        <button
+          type="button"
+          onclick="closeModal('admin-store-settings-modal')"
+          class="w-7 h-7 rounded-full bg-white border border-strawberry-200 text-mocha-700 hover:bg-strawberry-100 flex items-center justify-center text-xs transition shrink-0"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="overflow-y-auto phone-scroll p-4 space-y-2.5 text-xs flex-1">
+        <!-- แก้ไขข้อความทุกจุดในหน้าโปรไฟล์และหัวเว็บ -->
+        <div>
+          <label class="block font-medium text-mocha-700 mb-0.5">ชื่อร้าน</label>
+          <input
+            type="text"
+            id="admin-store-name"
+            class="w-full px-2.5 py-1.5 rounded-xl bg-white border border-strawberry-200 focus:outline-none focus:ring-2 focus:ring-strawberry-400"
+          />
+        </div>
+        <div>
+          <label class="block font-medium text-mocha-700 mb-0.5">ข้อความใต้ชื่อร้าน (หัวเว็บด้านบน)</label>
+          <input
+            type="text"
+            id="admin-store-tagline"
+            class="w-full px-2.5 py-1.5 rounded-xl bg-white border border-strawberry-200 focus:outline-none focus:ring-2 focus:ring-strawberry-400"
+          />
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium text-mocha-700 mb-0.5 text-[11px]">ป้ายมุมแบนเนอร์</label>
+            <input
+              type="text"
+              id="admin-banner-badge"
+              class="w-full px-2.5 py-1.5 rounded-xl bg-white border border-strawberry-200 focus:outline-none focus:ring-2 focus:ring-strawberry-400"
+            />
+          </div>
+          <div>
+            <label class="block font-medium text-mocha-700 mb-0.5 text-[11px]">อิโมติคอนมุมโลโก้</label>
+            <input
+              type="text"
+              id="admin-logo-sticker"
+              class="w-full px-2.5 py-1.5 rounded-xl bg-white border border-strawberry-200 focus:outline-none focus:ring-2 focus:ring-strawberry-400 text-center"
+            />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium text-mocha-700 mb-0.5 text-[11px]">ข้อความใต้แบนเนอร์ (ซ้าย)</label>
+            <input
+              type="text"
+              id="admin-cam-left"
+              class="w-full px-2.5 py-1.5 rounded-xl bg-white border border-strawberry-200 focus:outline-none focus:ring-2 focus:ring-strawberry-400"
+            />
+          </div>
+          <div>
+            <label class="block font-medium text-mocha-700 mb-0.5 text-[11px]">อิโมติคอนใต้แบนเนอร์ (ขวา)</label>
+            <input
+              type="text"
+              id="admin-cam-right"
+              class="w-full px-2.5 py-1.5 rounded-xl bg-white border border-strawberry-200 focus:outline-none focus:ring-2 focus:ring-strawberry-400 text-center"
+            />
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium text-mocha-700 mb-0.5">แถวอิโมติคอนตกแต่งใต้ชื่อร้าน</label>
+          <input
+            type="text"
+            id="admin-emoji-divider"
+            class="w-full px-2.5 py-1.5 rounded-xl bg-white border border-strawberry-200 focus:outline-none focus:ring-2 focus:ring-strawberry-400 text-center"
+          />
+        </div>
+        <div>
+          <label class="block font-medium text-mocha-700 mb-0.5">ข้อความต้อนรับ</label>
+          <textarea
+            id="admin-welcome-msg"
+            rows="2"
+            class="w-full px-2.5 py-1.5 rounded-xl bg-white border border-strawberry-200 focus:outline-none focus:ring-2 focus:ring-strawberry-400"
+          ></textarea>
+        </div>
+      </div>
+      <div class="flex gap-1.5 px-4 py-3 border-t border-dashed border-strawberry-200 bg-cream-50/95 shrink-0">
+        <button
+          type="button"
+          onclick="saveStoreSettings()"
+          class="btn-kawaii-pink flex-1 py-2 px-3 rounded-xl font-semibold text-xs flex items-center justify-center gap-1.5"
+        >
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>บันทึกข้อมูลสมุดรีวิว</span>
+        </button>
+        <button
+          type="button"
+          onclick="closeModal('admin-store-settings-modal')"
+          class="px-3.5 py-2 rounded-xl bg-cream-200 text-mocha-700 text-xs font-medium hover:bg-strawberry-100 transition"
+        >
+          ปิด
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- โมดอลตอบกลับรีวิวของร้าน -->
+  <div id="admin-review-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 bg-mocha-800/40 backdrop-blur-xs">
+    <div class="bg-cream-50 border-2 border-strawberry-300 rounded-3xl max-w-sm w-full p-4 shadow-2xl space-y-3">
+      <div class="flex items-center justify-between border-b border-strawberry-100 pb-2">
+        <h4 class="font-bold text-sm text-mocha-800">ตอบกลับรีวิวลูกค้า</h4>
+        <button
+          type="button"
+          onclick="closeModal('admin-review-modal')"
+          class="w-7 h-7 rounded-full bg-cream-200 text-mocha-700 hover:bg-strawberry-200 flex items-center justify-center text-xs"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <input type="hidden" id="reply-review-id" />
+      <div class="space-y-2 text-xs">
+        <p id="reply-review-context" class="p-2 rounded-xl bg-strawberry-100/50 text-mocha-700 italic">"ความเห็นลูกค้า..."</p>
+        <div>
+          <label class="block font-medium text-mocha-700 mb-0.5">ข้อความตอบกลับจากร้าน Inarich Store</label>
+          <textarea
+            id="reply-review-text"
+            rows="3"
+            placeholder="ขอบคุณมากๆ เลยนะคะ ยินดีให้บริการค่ะ..."
+            class="w-full px-3 py-2 rounded-xl bg-white border border-strawberry-200 focus:outline-none"
+          ></textarea>
+        </div>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button
+          type="button"
+          onclick="closeModal('admin-review-modal')"
+          class="flex-1 py-2 rounded-xl bg-cream-200 text-mocha-700 font-medium text-xs"
+        >
+          ยกเลิก
+        </button>
+        <button
+          type="button"
+          onclick="saveAdminReviewReply()"
+          class="btn-kawaii-pink flex-1 py-2 rounded-xl font-semibold text-xs"
+        >
+          บันทึกคำตอบ
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const STORAGE_KEY = 'inarich_review_only_v1';
+    /**
+     * สร้างรูปแบนเนอร์เริ่มต้นโทน Scrapbook Pink & Sage
+     */
+    function generateDefaultBannerDataUrl() {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1920;
+        canvas.height = 800;
+        const ctx = canvas.getContext('2d');
+        const grad = ctx.createLinearGradient(0, 0, 1920, 800);
+        grad.addColorStop(0, '#FFE4EC');
+        grad.addColorStop(0.5, '#FFFDFB');
+        grad.addColorStop(1, '#EEF6E8');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1920, 800);
+        ctx.fillStyle = 'rgba(255, 194, 212, 0.25)';
+        for (let x = 0; x < 1920; x += 120) {
+          ctx.fillRect(x, 0, 60, 800);
+        }
+        ctx.strokeStyle = '#F45D89';
+        ctx.lineWidth = 6;
+        ctx.setLineDash([20, 16]);
+        ctx.strokeRect(48, 48, 1824, 704);
+        ctx.setLineDash([]);
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#292524';
+        ctx.font = 'bold 100px "Fredoka", sans-serif';
+        ctx.fillText('Inarich Store', 960, 380);
+        ctx.fillStyle = '#78716C';
+        ctx.font = '500 42px "Prompt", sans-serif';
+        ctx.fillText('Scrapbook Handmade & Digital Boutique', 960, 460);
+        ctx.fillStyle = '#D93D6B';
+        ctx.font = '600 30px "Prompt", sans-serif';
+        ctx.fillText('WELCOME TO OUR OFFICIAL STOREFRONT', 960, 530);
+        return canvas.toDataURL('image/png');
+      } catch (err) {
+        console.warn('generateDefaultBannerDataUrl error:', err);
+        return '';
+      }
+    }
+    /**
+     * สร้างรูปโลโก้เริ่มต้นตรงกลางการ์ด
+     */
+    function generateDefaultLogoDataUrl() {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 500;
+        canvas.height = 500;
+        const ctx = canvas.getContext('2d');
+        const grad = ctx.createRadialGradient(250, 200, 40, 250, 250, 250);
+        grad.addColorStop(0, '#FFFDFB');
+        grad.addColorStop(0.55, '#FFE4EC');
+        grad.addColorStop(1, '#EEF6E8');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 500, 500);
+        ctx.beginPath();
+        ctx.arc(250, 250, 215, 0, Math.PI * 2);
+        ctx.strokeStyle = '#F45D89';
+        ctx.lineWidth = 8;
+        ctx.setLineDash([14, 10]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#292524';
+        ctx.font = 'bold 64px "Fredoka", sans-serif';
+        ctx.fillText('Inarich', 250, 270);
+        ctx.fillStyle = '#D93D6B';
+        ctx.font = 'bold 32px "Fredoka", sans-serif';
+        ctx.fillText('STORE', 250, 320);
+        return canvas.toDataURL('image/png');
+      } catch (err) {
+        console.warn('generateDefaultLogoDataUrl error:', err);
+        return '';
+      }
+    }
+    /**
+     * ข้อมูลเริ่มต้นสำหรับสมุดรีวิว
+     */
+    function getDefaultData() {
+      return {
+        storeName: 'Inarich Store',
+        storeTagline: '｡ﾟ•┈୨♡୧┈•ﾟ｡ สมุดรีวิวจากลูกค้า',
+        bannerBadge: '🍀 OFFICIAL',
+        camLeftText: 'INARICH-CAM • SNAPSHOT',
+        camRightEmoji: '🍎 🍀 🍒',
+        logoSticker: '🍓',
+        emojiDivider: '🍎 ˖ ࣪ ⊹ 🍀 ˚ ༘ ೀ⋆｡˚ 🍒 ˖ ࣪ ⊹ 🍀',
+        welcomeMsg: 'ยินดีต้อนรับสู่ Inarich Store 💖 อ่านรีวิวความประทับใจจากคุณลูกค้าจริงและฝากรีวิวน่ารักๆ ได้เลยค่ะ',
+        logoUrl: generateDefaultLogoDataUrl(),
+        bannerUrl: generateDefaultBannerDataUrl(),
+        reviewsBannerUrl: '',
+        headerIconUrl: '',
+        requireReviewPhoto: false,
+        reviews: [
+          {
+            id: 'rev-1',
+            code: 'INR-002',
+            author: 'คุณซันนี่ (Line)',
+            rating: 5,
+            text: 'งานน่ารักมากค่ะ แอดมินอัปเดตคิวตลอดเลย เช็กสถานะง่ายมาก ประทับใจสุดๆ 💖',
+            date: '22 พ.ย. 2026',
+            verified: true,
+            image: '',
+            reply: 'ขอบคุณคุณซันนี่มากๆ เลยนะคะ ยินดีให้บริการค่ะ 🍒',
+          },
+          {
+            id: 'rev-2',
+            code: 'INR-099',
+            author: 'คุณโบว์',
+            rating: 5,
+            text: 'โทนสีละมุนตรงบรีฟมากค่ะ ส่งงานตรงเวลา แนะนำร้านนี้เลย!',
+            date: '20 พ.ย. 2026',
+            verified: true,
+            image: '',
+            reply: '',
+          },
+        ],
+      };
+    }
+    /**
+     * โหลดข้อมูลจาก LocalStorage พร้อม fallback เป็นค่าเริ่มต้น
+     */
+    function loadAppData() {
+      const defaults = getDefaultData();
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaults;
+        const parsed = JSON.parse(raw);
+        return {
+          ...defaults,
+          ...parsed,
+          reviews: Array.isArray(parsed.reviews) ? parsed.reviews : defaults.reviews,
+        };
+      } catch (err) {
+        console.warn('Failed to load review data:', err);
+        return defaults;
+      }
+    }
+    function persistAppData() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+      } catch (err) {
+        console.warn('Failed to persist review data:', err);
+      }
+    }
+    function normalizeImageUrl(rawUrl) {
+      const clean = (rawUrl || '').trim();
+      if (!clean) return '';
+      if (clean.startsWith('data:') || clean.startsWith('blob:')) return clean;
+      return /^https?:\/\//i.test(clean) ? clean : `https://${clean}`;
+    }
+    function getFormattedThaiDate() {
+      const now = new Date();
+      const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+      const d = now.getDate();
+      const m = months[now.getMonth()];
+      const y = now.getFullYear();
+      return `${d} ${m} ${y}`;
+    }
+    let appData = loadAppData();
+    let currentMode = 'customer';
+    let currentReviewRatingSelect = 5;
+    function toggleAdminMode() {
+      const custGroup = document.getElementById('view-customer-group');
+      const adminGroup = document.getElementById('view-admin-group');
+      const adminBtn = document.getElementById('tab-mode-admin');
+      const subtitle = document.getElementById('nav-subtitle');
+      if (currentMode === 'customer') {
+        currentMode = 'admin';
+        custGroup.classList.add('hidden');
+        adminGroup.classList.remove('hidden');
+        adminBtn.className = 'btn-kawaii-pink w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium';
+        adminBtn.title = 'กลับไปหน้าสมุดรีวิว';
+        adminBtn.innerHTML = '<i class="fa-solid fa-gear text-[10px] text-white"></i>';
+        subtitle.textContent = 'ระบบจัดการสมุดรีวิว';
+        renderAdminView();
+      } else {
+        currentMode = 'customer';
+        adminGroup.classList.add('hidden');
+        custGroup.classList.remove('hidden');
+        adminBtn.className = 'btn-kawaii-circle w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium text-mocha-700';
+        adminBtn.title = 'จัดการสมุดรีวิว';
+        adminBtn.innerHTML = '<i class="fa-solid fa-gear text-[10px] text-strawberry-500"></i>';
+        subtitle.textContent = appData.storeTagline || '｡ﾟ•┈୨♡୧┈•ﾟ｡ สมุดรีวิวจากลูกค้า';
+        renderReviewPage();
+      }
+      document.getElementById('phone-scroll-area')?.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function openWriteReviewModal() {
+      syncReviewPhotoLabel();
+      openModal('write-review-modal');
+    }
+    function syncReviewPhotoLabel() {
+      const imgLabel = document.getElementById('review-image-label');
+      const fileInput = document.getElementById('review-image-file');
+      if (imgLabel) {
+        imgLabel.innerHTML = appData.requireReviewPhoto
+          ? 'แนบรูปถ่ายผลงาน / หลักฐาน <span class="text-strawberry-600 font-bold">*บังคับ</span>'
+          : 'แนบรูปถ่ายผลงาน / หลักฐาน (ถ้ามี)';
+      }
+      if (fileInput) {
+        fileInput.required = Boolean(appData.requireReviewPhoto);
+      }
+    }
+    function setReviewRating(rating) {
+      currentReviewRatingSelect = rating;
+      const buttons = document.querySelectorAll('#star-selector .star-btn');
+      buttons.forEach((btn, idx) => {
+        if (idx < rating) {
+          btn.classList.remove('bg-cream-200', 'text-mocha-500');
+          btn.classList.add('bg-amber-100', 'text-amber-500');
+        } else {
+          btn.classList.remove('bg-amber-100', 'text-amber-500');
+          btn.classList.add('bg-cream-200', 'text-mocha-500');
+        }
+      });
+    }
+    function handleReviewImageUpload(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById('review-image-data').value = e.target?.result || '';
+        showToast('แนบรูปถ่ายเรียบร้อยค่ะ');
+      };
+      reader.readAsDataURL(file);
+    }
+    function submitReviewForm(e) {
+      e.preventDefault();
+      const authorInput = document.getElementById('rev-author');
+      const commentInput = document.getElementById('rev-comment');
+      const imageDataInput = document.getElementById('review-image-data');
+      const author = authorInput.value.trim();
+      const comment = commentInput.value.trim();
+      const image = imageDataInput.value;
+      if (!author || !comment) {
+        showToast('กรุณากรอกชื่อและข้อความรีวิวด้วยนะคะ');
+        return;
+      }
+      if (appData.requireReviewPhoto && !image) {
+        showToast('กรุณาแนบรูปภาพหลักฐานก่อนส่งรีวิวด้วยนะคะ');
+        return;
+      }
+      appData.reviews.unshift({
+        id: 'rev-' + Date.now(),
+        code: '',
+        author,
+        rating: currentReviewRatingSelect,
+        text: comment,
+        date: getFormattedThaiDate(),
+        verified: true,
+        image,
+        reply: '',
+      });
+      persistAppData();
+      authorInput.value = '';
+      commentInput.value = '';
+      document.getElementById('review-image-file').value = '';
+      imageDataInput.value = '';
+      setReviewRating(5);
+      closeModal('write-review-modal');
+      renderReviewPage();
+      if (currentMode === 'admin') renderAdminView();
+      showToast('ขอบคุณสำหรับรีวิวค่ะ! แปะลงสมุดเรียบร้อย 💖');
+    }
+    function renderReviewPage() {
+      document.getElementById('nav-store-name').textContent = appData.storeName;
+      if (currentMode === 'customer') {
+        document.getElementById('nav-subtitle').textContent = appData.storeTagline || '｡ﾟ•┈୨♡୧┈•ﾟ｡ สมุดรีวิวจากลูกค้า';
+      }
+      const headerIconImg = document.getElementById('display-header-icon');
+      const headerRibbonIcon = document.getElementById('display-header-ribbon-icon');
+      const normalizedHeaderIcon = normalizeImageUrl(appData.headerIconUrl);
+      if (headerIconImg && headerRibbonIcon) {
+        if (normalizedHeaderIcon) {
+          headerIconImg.src = normalizedHeaderIcon;
+          headerIconImg.classList.remove('hidden');
+          headerRibbonIcon.classList.add('hidden');
+        } else {
+          headerIconImg.classList.add('hidden');
+          headerRibbonIcon.classList.remove('hidden');
+        }
+      }
+      document.getElementById('display-store-name').textContent = appData.storeName;
+      document.getElementById('display-welcome-msg').textContent = appData.welcomeMsg;
+      const badgeEl = document.getElementById('display-banner-badge');
+      if (badgeEl) badgeEl.textContent = appData.bannerBadge ?? '🍀 OFFICIAL';
+      const camLeftEl = document.getElementById('display-cam-left');
+      if (camLeftEl) camLeftEl.textContent = appData.camLeftText ?? 'INARICH-CAM • SNAPSHOT';
+      const camRightEl = document.getElementById('display-cam-right');
+      if (camRightEl) camRightEl.textContent = appData.camRightEmoji ?? '🍎 🍀 🍒';
+      const logoStickerEl = document.getElementById('display-logo-sticker');
+      if (logoStickerEl) logoStickerEl.textContent = appData.logoSticker ?? '🍓';
+      const emojiDividerEl = document.getElementById('display-emoji-divider');
+      if (emojiDividerEl) emojiDividerEl.textContent = appData.emojiDivider ?? '🍎 ˖ ࣪ ⊹ 🍀 ˚ ༘ ೀ⋆｡˚ 🍒 ˖ ࣪ ⊹ 🍀';
+      const logoEl = document.getElementById('display-logo');
+      if (logoEl) {
+        logoEl.src = normalizeImageUrl(appData.logoUrl) || generateDefaultLogoDataUrl();
+      }
+      const bannerEl = document.getElementById('display-banner');
+      if (bannerEl) {
+        bannerEl.src = normalizeImageUrl(appData.bannerUrl) || generateDefaultBannerDataUrl();
+      }
+      const reviews = appData.reviews || [];
+      document.getElementById('reviews-total-count').textContent = String(reviews.length);
+      const avgEl = document.getElementById('avg-rating-score');
+      if (reviews.length > 0) {
+        const avg = (reviews.reduce((sum, r) => sum + (Number(r.rating) || 5), 0) / reviews.length).toFixed(1);
+        avgEl.textContent = avg;
+      } else {
+        avgEl.textContent = '5.0';
+      }
+      const container = document.getElementById('reviews-list-container');
+      container.innerHTML = '';
+      if (reviews.length === 0) {
+        container.innerHTML = `
+          <div class="coquette-card rounded-2xl p-5 text-center text-mocha-500">
+            <i class="fa-solid fa-star text-xl text-strawberry-300 mb-1 block"></i>
+            <p class="text-xs">ยังไม่มีรีวิวในสมุด กดปุ่ม "เขียนรีวิว" เพื่อฝากความประทับใจได้เลยค่ะ!</p>
+          </div>
+        `;
+        return;
+      }
+      const stickers = ['🍎', '🍀', '🍒', '🍓', '🎀'];
+      const tapeStyles = ['gingham-tape-sage', 'gingham-tape-pink'];
+      reviews.forEach((rev, index) => {
+        const card = document.createElement('div');
+        const sticker = stickers[index % stickers.length];
+        const tapeClass = tapeStyles[index % tapeStyles.length];
+        const tiltClass = index % 2 === 0 ? '-rotate-[0.6deg]' : 'rotate-[0.6deg]';
+        card.className = `polaroid-card ${tiltClass} bg-white rounded-3xl p-3.5 border-2 border-strawberry-200 relative space-y-2`;
+        let starsHtml = '';
+        for (let i = 1; i <= 5; i++) {
+          if (i <= rev.rating) {
+            starsHtml += '<i class="fa-solid fa-star text-amber-400"></i>';
+          } else {
+            starsHtml += '<i class="fa-regular fa-star text-mocha-300"></i>';
+          }
+        }
+        card.innerHTML = `
+          <div class="w-14 h-3 ${tapeClass} mx-auto -mt-5 mb-1.5 rounded-xs border border-strawberry-200/70 shadow-2xs"></div>
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-8 h-8 rounded-2xl bg-gradient-to-br from-strawberry-100 to-cream-100 text-strawberry-600 font-bold text-xs flex items-center justify-center border border-strawberry-200 shrink-0">
+                ${escapeHtml((rev.author || 'U').substring(0, 1).toUpperCase())}
+              </span>
+              <div class="min-w-0">
+                <h3 class="font-bold text-xs text-mocha-800 leading-none flex items-center gap-1 truncate">
+                  <span class="truncate">${escapeHtml(rev.author)}</span>
+                  <span>${sticker}</span>
+                </h3>
+                <div class="flex text-[9px] gap-0.5 mt-1">${starsHtml}</div>
+              </div>
+            </div>
+            ${
+              rev.code
+                ? `<span class="text-[9.5px] font-bold bg-strawberry-100/80 px-2 py-0.5 rounded-full text-strawberry-600 border border-strawberry-200 shrink-0">${escapeHtml(rev.code)}</span>`
+                : ''
+            }
+          </div>
+          <div class="text-xs text-mocha-700 leading-relaxed bg-cream-50/90 p-2.5 rounded-2xl border border-dashed border-strawberry-200">
+            <span class="text-strawberry-300 font-serif text-base leading-none mr-0.5">“</span>${escapeHtml(rev.text)}<span class="text-strawberry-300 font-serif text-base leading-none ml-0.5">”</span>
+          </div>
+          ${
+            rev.image
+              ? `<div class="w-24 aspect-square rounded-xl overflow-hidden border border-strawberry-200">
+                  <img src="${escapeHtml(normalizeImageUrl(rev.image))}" alt="รูปประกอบรีวิว" class="w-full h-full object-cover" />
+                </div>`
+              : ''
+          }
+          ${
+            rev.reply
+              ? `<div class="p-2 rounded-xl bg-strawberry-100/60 border border-strawberry-200 text-[11px] text-mocha-800 space-y-0.5">
+                  <span class="font-bold text-strawberry-600 block flex items-center gap-1">
+                    <i class="fa-solid fa-reply text-[9px]"></i> ${escapeHtml(appData.storeName)} ตอบกลับ:
+                  </span>
+                  <p>${escapeHtml(rev.reply)}</p>
+                </div>`
+              : ''
+          }
+          <div class="flex items-center justify-between pt-0.5 px-0.5 text-[9.5px] text-mocha-500">
+            <span class="inline-flex items-center gap-1 text-emerald-600 font-semibold">
+              <i class="fa-solid fa-circle-check"></i> Verified Order
+            </span>
+            <span>${escapeHtml(rev.date || '')}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+    function renderAdminReviewPhotoSetting() {
+      const btn = document.getElementById('admin-review-require-photo-btn');
+      const desc = document.getElementById('admin-review-require-photo-desc');
+      if (!btn || !desc) return;
+      const isRequired = Boolean(appData.requireReviewPhoto);
+      if (isRequired) {
+        btn.textContent = 'บังคับแนบรูป';
+        btn.className = 'btn-kawaii-pink px-3 py-1.5 rounded-full text-[10px] font-bold shrink-0 transition-all';
+        desc.textContent = 'ปัจจุบัน: บังคับให้ลูกค้าแนบรูปภาพหลักฐานก่อนส่งรีวิว';
+      } else {
+        btn.textContent = 'ไม่บังคับ';
+        btn.className = 'btn-bounce px-3 py-1.5 rounded-full text-[10px] font-bold shrink-0 bg-white text-mocha-700 border border-strawberry-300 hover:bg-strawberry-50 transition-all';
+        desc.textContent = 'ปัจจุบัน: ลูกค้าสามารถส่งรีวิวได้ทั้งแนบรูปและไม่แนบรูป';
+      }
+    }
+    function toggleRequireReviewPhoto() {
+      appData.requireReviewPhoto = !Boolean(appData.requireReviewPhoto);
+      persistAppData();
+      renderAdminReviewPhotoSetting();
+      syncReviewPhotoLabel();
+      showToast(
+        appData.requireReviewPhoto
+          ? 'เปิดใช้งาน: บังคับให้ลูกค้าแนบรูปภาพก่อนส่งรีวิวแล้วค่ะ'
+          : 'ปิดใช้งาน: ลูกค้าสามารถส่งรีวิวโดยไม่แนบรูปภาพได้แล้วค่ะ'
+      );
+    }
+    function renderAdminImagePreviews() {
+      const previewBanner = document.getElementById('admin-preview-banner');
+      if (previewBanner) {
+        previewBanner.src = normalizeImageUrl(appData.bannerUrl) || generateDefaultBannerDataUrl();
+      }
+      const previewLogo = document.getElementById('admin-preview-logo');
+      if (previewLogo) {
+        previewLogo.src = normalizeImageUrl(appData.logoUrl) || generateDefaultLogoDataUrl();
+      }
+      const previewHeaderImg = document.getElementById('admin-preview-header-icon');
+      const previewHeaderRibbon = document.getElementById('admin-preview-header-ribbon');
+      const normalizedHeaderIcon = normalizeImageUrl(appData.headerIconUrl);
+      if (previewHeaderImg && previewHeaderRibbon) {
+        if (normalizedHeaderIcon) {
+          previewHeaderImg.src = normalizedHeaderIcon;
+          previewHeaderImg.classList.remove('hidden');
+          previewHeaderRibbon.classList.add('hidden');
+        } else {
+          previewHeaderImg.classList.add('hidden');
+          previewHeaderRibbon.classList.remove('hidden');
+        }
+      }
+    }
+    function handleAdminImageUpload(event, targetType) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const dataUrl = e.target?.result || '';
+        if (!dataUrl) return;
+        if (targetType === 'banner') {
+          appData.bannerUrl = dataUrl;
+        } else if (targetType === 'logo') {
+          appData.logoUrl = dataUrl;
+        } else if (targetType === 'headerIcon') {
+          appData.headerIconUrl = dataUrl;
+        }
+        persistAppData();
+        renderAdminImagePreviews();
+        renderReviewPage();
+        showToast('อัปโหลดและบันทึกรูปภาพอัตโนมัติแล้วค่ะ 📸');
+      };
+      reader.readAsDataURL(file);
+    }
+    function resetStoreImage(targetType) {
+      if (targetType === 'banner') {
+        appData.bannerUrl = generateDefaultBannerDataUrl();
+        const input = document.getElementById('admin-banner-file');
+        if (input) input.value = '';
+      } else if (targetType === 'logo') {
+        appData.logoUrl = generateDefaultLogoDataUrl();
+        const input = document.getElementById('admin-logo-file');
+        if (input) input.value = '';
+      } else if (targetType === 'headerIcon') {
+        appData.headerIconUrl = '';
+        const input = document.getElementById('admin-header-icon-file');
+        if (input) input.value = '';
+      }
+      persistAppData();
+      renderAdminImagePreviews();
+      renderReviewPage();
+      showToast('คืนค่ารูปภาพเริ่มต้นเรียบร้อยค่ะ');
+    }
+    function renderAdminView() {
+      syncStoreSettingsInputs();
+      renderAdminReviewPhotoSetting();
+      const listEl = document.getElementById('admin-reviews-list');
+      listEl.innerHTML = '';
+      if (!appData.reviews || appData.reviews.length === 0) {
+        listEl.innerHTML = '<div class="text-xs text-mocha-500 text-center py-3">ยังไม่มีรีวิวในระบบค่ะ</div>';
+        return;
+      }
+      appData.reviews.forEach((rev) => {
+        const row = document.createElement('div');
+        row.className = 'p-2.5 rounded-xl bg-cream-100/80 border border-strawberry-200 space-y-1.5 text-xs';
+        row.innerHTML = `
+          <div class="flex items-start justify-between gap-2">
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h4 class="font-bold text-mocha-800 truncate">escapeHtml(rev.author)({rev.rating}/5 ดาว)</h4>
+                ${
+                  rev.code
+                    ? `<span class="text-[9px] bg-white px-1.5 py-0.5 rounded-full border border-strawberry-200 text-strawberry-600 font-bold">${escapeHtml(rev.code)}</span>`
+                    : ''
+                }
+              </div>
+              <p class="text-[11px] text-mocha-700 mt-0.5">${escapeHtml(rev.text)}</p>
+              ${rev.reply ? `<p class="text-[10px] text-strawberry-600 font-medium mt-1">ตอบกลับ: ${escapeHtml(rev.reply)}</p>` : ''}
+            </div>
+            <div class="flex items-center gap-1 shrink-0">
+              <button type="button" onclick="openAdminReviewReplyModal('${escapeJs(rev.id)}')" class="btn-kawaii-circle w-7 h-7 rounded-full text-strawberry-500 flex items-center justify-center text-xs" title="ตอบกลับ">
+                <i class="fa-solid fa-reply"></i>
+              </button>
+              <button type="button" onclick="deleteReviewItem('${escapeJs(rev.id)}')" class="btn-bounce w-7 h-7 rounded-lg bg-white text-red-500 border border-red-200 flex items-center justify-center text-xs" title="ลบรีวิว">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        listEl.appendChild(row);
+      });
+    }
+    function syncStoreSettingsInputs() {
+      renderAdminImagePreviews();
+      document.getElementById('admin-store-name').value = appData.storeName || '';
+      document.getElementById('admin-store-tagline').value = appData.storeTagline || '｡ﾟ•┈୨♡୧┈•ﾟ｡ สมุดรีวิวจากลูกค้า';
+      document.getElementById('admin-banner-badge').value = appData.bannerBadge ?? '🍀 OFFICIAL';
+      document.getElementById('admin-logo-sticker').value = appData.logoSticker ?? '🍓';
+      document.getElementById('admin-cam-left').value = appData.camLeftText ?? 'INARICH-CAM • SNAPSHOT';
+      document.getElementById('admin-cam-right').value = appData.camRightEmoji ?? '🍎 🍀 🍒';
+      document.getElementById('admin-emoji-divider').value = appData.emojiDivider ?? '🍎 ˖ ࣪ ⊹ 🍀 ˚ ༘ ೀ⋆｡˚ 🍒 ˖ ࣪ ⊹ 🍀';
+      document.getElementById('admin-welcome-msg').value = appData.welcomeMsg || '';
+    }
+    function openStoreSettingsModal() {
+      syncStoreSettingsInputs();
+      openModal('admin-store-settings-modal');
+    }
+    function saveStoreSettings() {
+      const nameVal = document.getElementById('admin-store-name').value.trim();
+      const taglineVal = document.getElementById('admin-store-tagline').value.trim();
+      const badgeVal = document.getElementById('admin-banner-badge').value.trim();
+      const logoStickerVal = document.getElementById('admin-logo-sticker').value.trim();
+      const camLeftVal = document.getElementById('admin-cam-left').value.trim();
+      const camRightVal = document.getElementById('admin-cam-right').value.trim();
+      const emojiDividerVal = document.getElementById('admin-emoji-divider').value.trim();
+      const welcomeVal = document.getElementById('admin-welcome-msg').value.trim();
+
+      if (nameVal) appData.storeName = nameVal;
+      appData.storeTagline = taglineVal;
+      appData.bannerBadge = badgeVal;
+      appData.logoSticker = logoStickerVal;
+      appData.camLeftText = camLeftVal;
+      appData.camRightEmoji = camRightVal;
+      appData.emojiDivider = emojiDividerVal;
+      if (welcomeVal) appData.welcomeMsg = welcomeVal;
+
+      persistAppData();
+      closeModal('admin-store-settings-modal');
+      renderReviewPage();
+      showToast('บันทึกข้อมูลสมุดรีวิวเรียบร้อยแล้วค่ะ!');
+    }
+    function openAdminReviewReplyModal(id) {
+      const rev = appData.reviews.find((r) => r.id === id);
+      if (!rev) return;
+      document.getElementById('reply-review-id').value = rev.id;
+      document.getElementById('reply-review-context').textContent = `"${rev.text}"`;
+      document.getElementById('reply-review-text').value = rev.reply || '';
+      openModal('admin-review-modal');
+    }
+    function saveAdminReviewReply() {
+      const id = document.getElementById('reply-review-id').value;
+      const replyTxt = document.getElementById('reply-review-text').value.trim();
+      const idx = appData.reviews.findIndex((r) => r.id === id);
+      if (idx !== -1) {
+        appData.reviews[idx].reply = replyTxt;
+        persistAppData();
+        showToast('บันทึกคำตอบกลับเรียบร้อยค่ะ');
+      }
+      closeModal('admin-review-modal');
+      renderAdminView();
+      renderReviewPage();
+    }
+    function deleteReviewItem(id) {
+      appData.reviews = appData.reviews.filter((r) => r.id !== id);
+      persistAppData();
+      renderAdminView();
+      renderReviewPage();
+      showToast('ลบรีวิวเรียบร้อยค่ะ');
+    }
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+      }
+    }
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      }
+    }
+    function showToast(msg) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className =
+        'px-3.5 py-2 rounded-full bg-mocha-800/90 text-cream-50 text-xs font-medium shadow-lg flex items-center gap-2 transition-all duration-300 pointer-events-auto border border-strawberry-300/30';
+      toast.innerHTML = `<i class="fa-solid fa-sparkles text-strawberry-300"></i><span>${escapeHtml(msg)}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(8px)';
+        setTimeout(() => toast.remove(), 250);
+      }, 2400);
+    }
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, function (m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+      });
+    }
+    function escapeJs(str) {
+      if (!str) return '';
+      return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+    }
+    /* เสียงดนตรีกล่องดนตรีโทนละมุน */
+    let audioCtx = null;
+    let bgmLoopInterval = null;
+    let isBgmPlaying = false;
+    let userMutedBgm = false;
+    const BGM_MELODY_NOTES = [
+      { freq: 523.25, dur: 0.34 },
+      { freq: 659.25, dur: 0.34 },
+      { freq: 783.99, dur: 0.42 },
+      { freq: 659.25, dur: 0.32 },
+      { freq: 587.33, dur: 0.34 },
+      { freq: 698.46, dur: 0.34 },
+      { freq: 880.0, dur: 0.44 },
+      { freq: 783.99, dur: 0.44 },
+      { freq: 659.25, dur: 0.32 },
+      { freq: 587.33, dur: 0.32 },
+      { freq: 523.25, dur: 0.65 },
+    ];
+    let bgmNoteIndex = 0;
+    function ensureAudioContextReady() {
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return null;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
+        return audioCtx;
+      } catch (err) {
+        return null;
+      }
+    }
+    function playSingleMelodyNote() {
+      if (!isBgmPlaying || userMutedBgm) return;
+      const ctx = ensureAudioContextReady();
+      if (!ctx || ctx.state !== 'running') return;
+      try {
+        const note = BGM_MELODY_NOTES[bgmNoteIndex % BGM_MELODY_NOTES.length];
+        bgmNoteIndex += 1;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(note.freq, now);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.02, now + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + note.dur);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + note.dur + 0.02);
+      } catch (err) {
+        console.warn('Melody note error:', err);
+      }
+    }
+    function updateMusicButtonUi(playing) {
+      const btn = document.getElementById('btn-music-toggle');
+      const icon = document.getElementById('music-icon');
+      if (!btn || !icon) return;
+      btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+      btn.className = playing
+        ? 'btn-music-active-pink w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium text-white shrink-0'
+        : 'btn-kawaii-circle w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium text-mocha-700 shrink-0';
+      icon.className = playing
+        ? 'fa-solid fa-music text-[10px] text-white'
+        : 'fa-solid fa-volume-xmark text-[10px] text-mocha-700';
+    }
+    function startBgmLoop() {
+      if (userMutedBgm) return;
+      const ctx = ensureAudioContextReady();
+      if (!ctx) return;
+      if (bgmLoopInterval) clearInterval(bgmLoopInterval);
+      isBgmPlaying = true;
+      updateMusicButtonUi(true);
+      playSingleMelodyNote();
+      bgmLoopInterval = setInterval(() => {
+        if (!isBgmPlaying || userMutedBgm) return;
+        if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+        if (ctx.state === 'running') playSingleMelodyNote();
+      }, 420);
+    }
+    function stopBgmLoop() {
+      isBgmPlaying = false;
+      if (bgmLoopInterval) {
+        clearInterval(bgmLoopInterval);
+        bgmLoopInterval = null;
+      }
+      updateMusicButtonUi(false);
+    }
+    function toggleBgmMusic() {
+      if (isBgmPlaying) {
+        userMutedBgm = true;
+        stopBgmLoop();
+        showToast('ปิดเพลงพื้นหลังแล้วค่ะ 🔇');
+      } else {
+        userMutedBgm = false;
+        const ctx = ensureAudioContextReady();
+        if (ctx && ctx.state === 'suspended') {
+          ctx.resume().then(() => {
+            startBgmLoop();
+            showToast('เปิดเพลงพื้นหลังแล้วค่ะ 🎵');
+          }).catch(() => {
+            startBgmLoop();
+            showToast('เปิดเพลงพื้นหลังแล้วค่ะ 🎵');
+          });
+        } else {
+          startBgmLoop();
+          showToast('เปิดเพลงพื้นหลังแล้วค่ะ 🎵');
+        }
+      }
+    }
+    function attemptAutoplayBgm() {
+      if (userMutedBgm) {
+        updateMusicButtonUi(false);
+        return;
+      }
+      startBgmLoop();
+      const unlock = () => {
+        if (!userMutedBgm) startBgmLoop();
+        window.removeEventListener('pointerdown', unlock);
+        window.removeEventListener('keydown', unlock);
+        window.removeEventListener('touchstart', unlock);
+      };
+      window.addEventListener('pointerdown', unlock, { once: true });
+      window.addEventListener('keydown', unlock, { once: true });
+      window.addEventListener('touchstart', unlock, { once: true });
+    }
+    function updatePhoneClock() {
+      const el = document.getElementById('phone-clock');
+      if (!el) return;
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      el.textContent = `hh:{mm}`;
+    }
+    function renderPhoneBackgroundEffects() {
+      const container = document.getElementById('phone-bg-effects');
+      if (!container) return;
+      const starPositions = [
+        { top: '7%', left: '8%', size: '10px', delay: '0s', char: '✦' },
+        { top: '14%', right: '10%', size: '12px', delay: '0.6s', char: '✧' },
+        { top: '28%', left: '5%', size: '9px', delay: '1.2s', char: '✦' },
+        { top: '42%', right: '6%', size: '11px', delay: '0.3s', char: '✧' },
+        { top: '58%', left: '9%', size: '10px', delay: '1.7s', char: '✦' },
+        { top: '73%', right: '9%', size: '12px', delay: '0.9s', char: '✧' },
+        { top: '86%', left: '12%', size: '9px', delay: '2.1s', char: '✦' },
+      ];
+      const starColors = ['#FF8FB1', '#F45D89', '#84A96C', '#FFADC6'];
+      let starsHtml = '';
+      starPositions.forEach((st, idx) => {
+        const style = [
+          st.top ? `top:${st.top}` : '',
+          st.left ? `left:${st.left}` : '',
+          st.right ? `right:${st.right}` : '',
+          `font-size:${st.size}`,
+          `color:${starColors[idx % starColors.length]}`,
+          `animation-delay:${st.delay}`,
+        ]
+          .filter(Boolean)
+          .join(';');
+        starsHtml += `<span class="bg-twinkle-star" style="style">{st.char}</span>`;
+      });
+      const fallingItems = [
+        { left: '12%', duration: '11s', delay: '0s', size: '10px', char: '♡', color: '#FF709A' },
+        { left: '34%', duration: '13s', delay: '3s', size: '9px', char: '✦', color: '#FF9BB8' },
+        { left: '58%', duration: '12s', delay: '1.5s', size: '10px', char: '♡', color: '#F45D89' },
+        { left: '78%', duration: '14s', delay: '4.5s', size: '9px', char: '✿', color: '#84A96C' },
+        { left: '90%', duration: '11.5s', delay: '2.2s', size: '9px', char: '♡', color: '#FF8FB1' },
+      ];
+      let fallingHtml = '';
+      fallingItems.forEach((item) => {
+        const style = `left:item.left;animation-duration:{item.duration};animation-delay:item.delay;font-size:{item.size};color:${item.color}`;
+        fallingHtml += `<span class="bg-falling-item" style="style">{item.char}</span>`;
+      });
+      container.innerHTML = starsHtml + fallingHtml;
+    }
+    function startStoreSplashScreen() {
+      const screenEl = document.getElementById('store-loading-screen');
+      const barEl = document.getElementById('splash-progress-bar');
+      const percentEl = document.getElementById('splash-percent-text');
+      const logoEl = document.getElementById('splash-store-logo');
+      const nameEl = document.getElementById('splash-store-name');
+      if (!screenEl || !barEl || !percentEl) return;
+      if (logoEl) logoEl.src = normalizeImageUrl(appData.logoUrl) || generateDefaultLogoDataUrl();
+      if (nameEl) nameEl.textContent = appData.storeName || 'Inarich Store';
+      let progress = 0;
+      const timer = setInterval(() => {
+        const step = progress < 45 ? 8 : progress < 80 ? 6 : 5;
+        progress = Math.min(100, progress + step);
+        barEl.style.width = `${progress}%`;
+        percentEl.textContent = `${progress}%`;
+        if (progress >= 100) {
+          clearInterval(timer);
+          setTimeout(() => {
+            screenEl.style.opacity = '0';
+            screenEl.style.pointerEvents = 'none';
+            setTimeout(() => screenEl.classList.add('hidden'), 400);
+          }, 180);
+        }
+      }, 40);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      updatePhoneClock();
+      setInterval(updatePhoneClock, 15000);
+      renderPhoneBackgroundEffects();
+      renderReviewPage();
+      renderAdminView();
+      syncReviewPhotoLabel();
+      setReviewRating(5);
+      attemptAutoplayBgm();
+      startStoreSplashScreen();
+    });
+  </script>
+</body>
+</html>
+
